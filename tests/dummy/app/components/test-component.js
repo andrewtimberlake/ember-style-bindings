@@ -1,10 +1,4 @@
-# Ember-style-bindings
-
-Provides a way to dynamically build up an inline style attribute for compoonents in a manner simmilar to `classNameBindings`.
-
-## Usage
-
-```javascript
+import Ember from 'ember';
 import StyledComponentMixin from 'ember-style-bindings/mixins/styled-component';
 
 export default Ember.Component.extend(StyledComponentMixin, {
@@ -39,38 +33,3 @@ export default Ember.Component.extend(StyledComponentMixin, {
     return 99;
   })
 });
-```
-
-The above component will proced HTML as follows
-```html
-<div style="height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap"></div>
-```
-
-**NOTE** This addon uses `attributeBindings: ['style']` and a `style` property to work.
-
-## Instaling
-
-`ember install ember-style-bindings`
-
-## Developing
-
-* `git clone` this repository
-* `npm install`
-* `bower install`
-
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
