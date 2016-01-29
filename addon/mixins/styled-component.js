@@ -45,28 +45,39 @@ export default Mixin.create({
   init() {
     this._super(...arguments);
 
-    if(this.styleBindings) {
-      let styleKeys = [];
-      this.styleBindings = Ember.A(this.styleBindings.slice());
-      styleKeys += this.styleBindings.map((binding) => {
-        return binding.split(':')[0];
-      });
+    if(this.styleBindings || this.styles) {
+      let styleKeys = ['styles'];
+      if(this.styleBindings) {
+        this.styleBindings = Ember.A(this.styleBindings.slice());
+        styleKeys += this.styleBindings.map((binding) => {
+          return binding.split(':')[0];
+        });
+      }
       this.attributeBindings = ['style'];
 
       defineProperty(this, 'style', computed(...styleKeys, this._buildStyles));
     }
   },
 
+  _buildStyle(property, value) {
+    return this._fixStyles(property, value).join(':');
+  },
+
   _buildStyles() {
     let styles = [];
     if(this.styleBindings) {
-      this.styleBindings.map((binding) => {
+      this.styleBindings.forEach((binding) => {
         let [key, property] = binding.split(':');
         if(!property) { property = key; }
-        styles.push(this._fixStyles(property, this.get(key)).join(':'));
+        styles.push(this._buildStyle(property, this.get(key)));
       });
-      // console.log('styles', styles);
     }
+    if(this.styles) {
+      Object.keys(this.styles).forEach((key) => {
+        styles.push(this._buildStyle(key, this.get('styles.'+key)));
+      });
+    }
+    // console.log('styles', styles);
     return new SafeString(styles.join(';'));
   },
 

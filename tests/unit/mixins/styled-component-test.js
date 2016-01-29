@@ -49,10 +49,40 @@ test('it does not add a pixel extension to "unitless" numbers', function(assert)
 
 test('it accepts camelized property names', function(assert) {
   let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
-    styleBindings: ['zIndex'],
-    zIndex: 99
+    styleBindings: ['zIndex', 'backgroundColor', 'whiteSpace'],
+    zIndex: 99,
+    backgroundColor: 'red',
+    whiteSpace: 'nowrap'
   });
   let subject = StyledComponentObject.create();
 
-  assert.equal(subject.get('style').toHTML(), 'z-index:99');
+  assert.equal(subject.get('style').toHTML(), 'z-index:99;background-color:red;white-space:nowrap');
+});
+
+test('it includes static styles', function(assert) {
+  let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
+    styles: {
+      top: 0,
+      left: 0,
+      zIndex: 99
+    }
+  });
+  let subject = StyledComponentObject.create();
+
+  assert.equal(subject.get('style').toHTML(), 'top:0px;left:0px;z-index:99');
+});
+
+test('it will combine static and dynamic styles', function(assert) {
+  let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
+    styleBindings: ['theWidth:width'],
+    styles: {
+      top: 0,
+      left: 0,
+      zIndex: 99
+    },
+    theWidth: 50
+  });
+  let subject = StyledComponentObject.create();
+
+  assert.equal(subject.get('style').toHTML(), 'width:50px;top:0px;left:0px;z-index:99');
 });
