@@ -46,23 +46,27 @@ export default Mixin.create({
     this._super(...arguments);
 
     if(this.styleBindings) {
+      let styleKeys = [];
       this.styleBindings = Ember.A(this.styleBindings.slice());
-      this.attributeBindings = ['style'];
-
-      let styleKeys = this.styleBindings.map((binding) => {
+      styleKeys += this.styleBindings.map((binding) => {
         return binding.split(':')[0];
       });
+      this.attributeBindings = ['style'];
+
       defineProperty(this, 'style', computed(...styleKeys, this._buildStyles));
     }
   },
 
   _buildStyles() {
-    let styles = this.styleBindings.map((binding) => {
-      let [key, property] = binding.split(':');
-      if(!property) { property = key; }
-      return this._fixStyles(property, this.get(key)).join(':');
-    });
-    // console.log('styles', styles);
+    let styles = [];
+    if(this.styleBindings) {
+      this.styleBindings.map((binding) => {
+        let [key, property] = binding.split(':');
+        if(!property) { property = key; }
+        styles.push(this._fixStyles(property, this.get(key)).join(':'));
+      });
+      // console.log('styles', styles);
+    }
     return new SafeString(styles.join(';'));
   },
 
