@@ -46,6 +46,8 @@ The above component will proced HTML as follows
 <div class="ember-view" style="height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap"></div>
 ```
 
+**NOTE** This addon uses `attributeBindings: ['style']` and a `style` property to work.
+
 ## Instaling
 
 `ember install ember-style-bindings`
