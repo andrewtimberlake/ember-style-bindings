@@ -46,3 +46,13 @@ test('it does not add a pixel extension to "unitless" numbers', function(assert)
 
   assert.equal(subject.get('style').toHTML(), 'opacity:1;z-index:99');
 });
+
+test('it accepts camelized property names', function(assert) {
+  let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
+    styleBindings: ['zIndex'],
+    zIndex: 99
+  });
+  let subject = StyledComponentObject.create();
+
+  assert.equal(subject.get('style').toHTML(), 'z-index:99');
+});

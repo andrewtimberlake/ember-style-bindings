@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const { computed, defineProperty, Handlebars, Mixin } = Ember;
-const { camelize } = Ember.String;
+const { camelize, dasherize } = Ember.String;
 const { SafeString } = Handlebars;
 
 // Thanks to ember-computed-style
@@ -71,6 +71,6 @@ export default Mixin.create({
     if(isNumber && !isUnitlessNumber[camelize(property)]) {
       value = value + 'px';
     }
-    return [property, value];
+    return [dasherize(property), value];
   }
 });
