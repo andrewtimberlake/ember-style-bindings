@@ -49,8 +49,8 @@ export default Mixin.create({
       let styleKeys = ['styles'];
       if(this.styleBindings) {
         this.styleBindings = Ember.A(this.styleBindings.slice());
-        styleKeys += this.styleBindings.map((binding) => {
-          return binding.split(':')[0];
+        this.styleBindings.forEach(function(binding) {
+          styleKeys.push(binding.split(':')[0]);
         });
       }
       this.attributeBindings = ['style'];

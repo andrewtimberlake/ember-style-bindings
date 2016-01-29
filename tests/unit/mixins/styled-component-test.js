@@ -36,6 +36,21 @@ test('it adds an explicit pixel extension to numbers', function(assert) {
   assert.equal(subject.get('style').toHTML(), 'height:50px;width:25px');
 });
 
+test('it dynamically updates when bound properties change', function(assert) {
+  let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
+    styleBindings: ['height', 'theWidth:width'],
+    theWidth: 25,
+    height: 50
+  });
+  let subject = StyledComponentObject.create();
+
+  assert.equal(subject.get('style').toHTML(), 'height:50px;width:25px');
+
+  subject.set('theWidth', 50);
+
+  assert.equal(subject.get('style').toHTML(), 'height:50px;width:50px');
+});
+
 test('it does not add a pixel extension to "unitless" numbers', function(assert) {
   let StyledComponentObject = Ember.Object.extend(StyledComponentMixin, {
     styleBindings: ['opacity', 'zIndex:z-index'],
