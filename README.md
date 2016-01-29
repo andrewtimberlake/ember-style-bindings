@@ -1,4 +1,4 @@
-# Ember-style-bindings
+# Ember-style-bindings [![Build Status](https://travis-ci.org/andrewtimberlake/ember-style-bindings.svg?branch=master)](https://travis-ci.org/andrewtimberlake/ember-style-bindings)
 
 Provides a way to dynamically build up an inline style attribute for compoonents in a manner simmilar to `classNameBindings`.
 
