@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "andrewtimberlake/ember-style-bindings",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -38,7 +38,11 @@
     "ember-try": "~0.0.8"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "css",
+    "style",
+    "bindings",
+    "computed"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5"
