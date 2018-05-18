@@ -74,3 +74,7 @@ The above component will proced HTML as follows
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
