@@ -1,13 +1,15 @@
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('test-component', 'Integration | Component | test component', {
-  integration: true
-});
+module('Integration | Component | test component', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it renders', function(assert) {
-  this.render(hbs`{{test-component}}`);
+  test('it renders', async function(assert) {
+    await render(hbs`{{test-component}}`);
 
-  let $view = this.$('> .ember-view');
-  assert.equal($view.attr('style'), 'height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap');
+    let $view = this.$('> .ember-view');
+    assert.equal($view.attr('style'), 'height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap');
+  });
 });

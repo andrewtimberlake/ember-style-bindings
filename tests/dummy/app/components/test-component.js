@@ -1,7 +1,8 @@
-import Ember from 'ember';
+import { computed } from '@ember/object';
+import Component from '@ember/component';
 import StyledComponentMixin from 'ember-style-bindings/mixins/styled-component';
 
-export default Ember.Component.extend(StyledComponentMixin, {
+export default Component.extend(StyledComponentMixin, {
   // A list of CSS properties to be included.
   //   height is pulled from a property named height
   //   width is pulled from a property named theWidth
@@ -18,17 +19,17 @@ export default Ember.Component.extend(StyledComponentMixin, {
     whiteSpace: 'nowrap'
   },
 
-  height: Ember.computed(function() {
+  height: computed(function() {
     // do your height calculations
     return 50;
   }),
 
-  theWidth: Ember.computed(function() {
+  theWidth: computed(function() {
     // do your width calculations
     return 100;
   }),
 
-  zIndex: Ember.computed(function() {
+  zIndex: computed(function() {
     // do your positional calculations
     return 99;
   })

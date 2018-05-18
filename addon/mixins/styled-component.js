@@ -1,8 +1,7 @@
-import Ember from 'ember';
-
-const { computed, defineProperty, Handlebars, Mixin } = Ember;
-const { camelize, dasherize } = Ember.String;
-const { SafeString } = Handlebars;
+import { A } from '@ember/array';
+import { dasherize, camelize, htmlSafe } from '@ember/string';
+import { defineProperty, computed } from '@ember/object';
+import Mixin from '@ember/object/mixin';
 
 // Thanks to ember-computed-style
 // Lifted from React
@@ -48,7 +47,7 @@ export default Mixin.create({
     if(this.styleBindings || this.styles) {
       let styleKeys = ['styles'];
       if(this.styleBindings) {
-        this.styleBindings = Ember.A(this.styleBindings.slice());
+        this.styleBindings = A(this.styleBindings.slice());
         this.styleBindings.forEach(function(binding) {
           styleKeys.push(binding.split(':')[0]);
         });
@@ -78,7 +77,7 @@ export default Mixin.create({
       });
     }
     // console.log('styles', styles);
-    return new SafeString(styles.join(';'));
+    return htmlSafe(styles.join(';'));
   },
 
   _fixStyles(property, value) {
