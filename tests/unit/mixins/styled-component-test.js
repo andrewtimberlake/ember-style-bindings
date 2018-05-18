@@ -14,7 +14,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it adds a style property and style attribute binding when the styleBindings property is present', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['height', 'theWidth:width'],
+      styleBindings: ['height', 'theWidth:width'], // eslint-disable-line
       theWidth: '25px',
       height: '50px'
     });
@@ -26,7 +26,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it adds an explicit pixel extension to numbers', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['height', 'theWidth:width'],
+      styleBindings: ['height', 'theWidth:width'], // eslint-disable-line
       theWidth: 25,
       height: 50
     });
@@ -37,7 +37,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it dynamically updates when bound properties change', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['height', 'theWidth:width'],
+      styleBindings: ['height', 'theWidth:width'], // eslint-disable-line
       theWidth: 25,
       height: 50
     });
@@ -52,7 +52,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it does not add a pixel extension to "unitless" numbers', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['opacity', 'zIndex:z-index'],
+      styleBindings: ['opacity', 'zIndex:z-index'], // eslint-disable-line
       opacity: 1,
       zIndex: 99
     });
@@ -63,7 +63,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it accepts camelized property names', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['zIndex', 'backgroundColor', 'whiteSpace'],
+      styleBindings: ['zIndex', 'backgroundColor', 'whiteSpace'], // eslint-disable-line
       zIndex: 99,
       backgroundColor: 'red',
       whiteSpace: 'nowrap'
@@ -75,7 +75,7 @@ module('Unit | Mixin | styled component', function() {
 
   test('it includes static styles', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styles: {
+      styles: { // eslint-disable-line
         top: 0,
         left: 0,
         zIndex: 99
@@ -88,8 +88,8 @@ module('Unit | Mixin | styled component', function() {
 
   test('it will combine static and dynamic styles', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
-      styleBindings: ['theWidth:width'],
-      styles: {
+      styleBindings: ['theWidth:width'], // eslint-disable-line
+      styles: { // eslint-disable-line
         top: 0,
         left: 0,
         zIndex: 99

@@ -8,11 +8,11 @@ export default Component.extend(StyledComponentMixin, {
   //   width is pulled from a property named theWidth
   //   z-index is correctly named and pulled from the zIndex property
   // styleBindings are inherited from superclasses.
-  styleBindings: ['height', 'theWidth:width', 'zIndex'],
+  styleBindings: ['height', 'theWidth:width', 'zIndex'], // eslint-disable-line
 
   // You can easily include static styles using the styles property (optional)
   //  property names are correctly dasherized
-  styles: {
+  styles: { // eslint-disable-line
     position: 'absolute',
     top: 0,
     left: 0,
