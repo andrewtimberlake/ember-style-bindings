@@ -41,7 +41,7 @@ export default Ember.Component.extend(StyledComponentMixin, {
 });
 ```
 
-The above component will proced HTML as follows
+The above component will produce HTML as follows
 ```html
 <div style="height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap"></div>
 ```
