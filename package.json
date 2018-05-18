@@ -1,6 +1,6 @@
 {
   "name": "ember-style-bindings",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An easy way to bind inline styles to a component",
   "keywords": [
     "ember-addon",
