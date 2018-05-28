@@ -52,7 +52,13 @@ export default Mixin.create({
           styleKeys.push(binding.split(':')[0]);
         });
       }
-      this.attributeBindings = ['style'];
+      if(this.attributeBindings) {
+        const attrb = this.attributeBindings.slice(0);
+        attrb.push('style');
+        this.attributeBindings = attrb;
+      } else {
+        this.attributeBindings = ['style'];
+      }
 
       defineProperty(this, 'style', computed(...styleKeys, this._buildStyles));
     }

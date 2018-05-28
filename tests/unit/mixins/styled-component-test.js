@@ -24,6 +24,20 @@ module('Unit | Mixin | styled component', function() {
     assert.equal(subject.get('style').toHTML(), 'height:50px;width:25px');
   });
 
+  test('it doesn’t clobber an existing attribute binding', function(assert) {
+    let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
+      attributeBindings: ['theWidth:width'],
+      styleBindings: ['height', 'theWidth:width'], // eslint-disable-line
+      theWidth: '25px',
+      height: '50px'
+    });
+    let subject = StyledComponentObject.create();
+
+    assert.equal(subject.attributeBindings[0], 'theWidth:width');
+    assert.equal(subject.attributeBindings[1], 'style');
+    assert.equal(subject.get('style').toHTML(), 'height:50px;width:25px');
+  });
+
   test('it adds an explicit pixel extension to numbers', function(assert) {
     let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
       styleBindings: ['height', 'theWidth:width'], // eslint-disable-line
