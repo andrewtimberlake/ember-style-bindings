@@ -65,7 +65,11 @@ export default Mixin.create({
   },
 
   _buildStyle(property, value) {
-    return this._fixStyles(property, value).join(':');
+    if (typeof value === 'undefined' || value === null ) {
+      return null;
+    } else {
+      return this._fixStyles(property, value).join(':');
+    }
   },
 
   _buildStyles() {
@@ -74,12 +78,14 @@ export default Mixin.create({
       this.styleBindings.forEach((binding) => {
         let [key, property] = binding.split(':');
         if(!property) { property = key; }
-        styles.push(this._buildStyle(property, this.get(key)));
+        let style = this._buildStyle(property, this.get(key));
+        if (style !== null ) styles.push(style);
       });
     }
     if(this.styles) {
       Object.keys(this.styles).forEach((key) => {
-        styles.push(this._buildStyle(key, this.get('styles.'+key)));
+        let style = this._buildStyle(key, this.get('styles.'+key))
+        if (style !== null) styles.push(style);
       });
     }
     // console.log('styles', styles);

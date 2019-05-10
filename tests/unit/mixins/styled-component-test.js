@@ -114,4 +114,19 @@ module('Unit | Mixin | styled component', function() {
 
     assert.equal(subject.get('style').toHTML(), 'width:50px;top:0px;left:0px;z-index:99');
   });
+
+  test('it does not add a style if the property value is null or undefined', function(assert) {
+    let StyledComponentObject = EmberObject.extend(StyledComponentMixin, {
+      styleBindings: ['theWidth:width', 'theHeight:height', 'backgroundColor'], // eslint-disable-line
+      styles: { // eslint-disable-line
+        marginTop: null
+      },
+      theWidth: 50,
+      theHeight: null
+      // backgroundColor is also intentionally left undefined
+    });
+    let subject = StyledComponentObject.create();
+
+    assert.equal(subject.get('style').toHTML(), 'width:50px');
+  });
 });
