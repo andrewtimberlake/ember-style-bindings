@@ -84,7 +84,7 @@ export default Mixin.create({
     }
     if(this.styles) {
       Object.keys(this.styles).forEach((key) => {
-        let style = this._buildStyle(key, this.get('styles.'+key))
+        let style = this._buildStyle(key, this.get('styles.'+key));
         if (style !== null) styles.push(style);
       });
     }
