@@ -9,7 +9,7 @@ module('Integration | Component | test component', function(hooks) {
   test('it renders', async function(assert) {
     await render(hbs`{{test-component}}`);
 
-    let $view = this.$('> .ember-view');
-    assert.equal($view.attr('style'), 'height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap');
+    let $view = this.element.querySelector('.ember-view');
+    assert.equal($view.getAttribute('style'), 'height:50px;width:100px;z-index:99;position:absolute;top:0px;left:0px;white-space:nowrap');
   });
 });
