@@ -78,18 +78,16 @@ export default Mixin.create({
       this.styleBindings.forEach((binding) => {
         let [key, property] = binding.split(':');
         if(!property) { property = key; }
-        let style = this._buildStyle(property, this.get(key));
-        if (style !== null ) styles.push(style);
+        styles.push(this._buildStyle(property, this.get(key)));
       });
     }
     if(this.styles) {
       Object.keys(this.styles).forEach((key) => {
-        let style = this._buildStyle(key, this.get('styles.'+key));
-        if (style !== null) styles.push(style);
+        styles.push(this._buildStyle(key, this.get('styles.'+key)));
       });
     }
     // console.log('styles', styles);
-    return htmlSafe(styles.join(';'));
+    return htmlSafe(styles.filter(el => el).join(';'));
   },
 
   _fixStyles(property, value) {
