@@ -1,5 +1,6 @@
 import { A } from "@ember/array";
-import { dasherize, camelize, htmlSafe } from "@ember/string";
+import { dasherize, camelize } from "@ember/string";
+import { htmlSafe } from "@ember/template";
 import { defineProperty, computed } from "@ember/object";
 import Mixin from "@ember/object/mixin";
 
